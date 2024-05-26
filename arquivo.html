@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
             padding: 0;
             background-color: #dcdcdc;
         }
+
         .container {
             max-width: 600px;
             margin: 20px auto;
@@ -19,59 +21,91 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             text-align: center;
         }
+
         form {
             margin-top: 20px;
         }
-        label, input, button {
+
+        label,
+        input,
+        button {
             display: block;
             margin-bottom: 10px;
         }
-        input, button {
+
+        input,
+        button {
             width: 100%;
             padding: 5px;
         }
     </style>
+    <script>
+        function consultarSaldo() {
+            let saldoAtual = contaBancaria.consultarSaldo();
+            document.getElementById("saldo").value = saldoAtual;
+        }
+
+        // Função para realizar um depósito
+        function realizarDeposito() {
+            let valor = document.getElementById("valor").value;
+            let novoSaldo = contaBancaria.realizarDeposito(valor);
+            document.getElementById("saldo").value = novoSaldo;
+        }
+
+        // Função para realizar um saque
+        function realizarSaque() {
+            let valor = document.getElementById("valor").value;
+            let novoSaldo = contaBancaria.realizarSaque(valor);
+            if (novoSaldo === "Saldo insuficiente") {
+                alert("Saldo insuficiente para realizar o saque.");
+            } else {
+                document.getElementById("saldo").value = novoSaldo;
+            }
+    </script>
 </head>
+
 <body>
-<div class="container">
-    <h1>Sistema de Gerenciamento Bancário</h1>
-    <form id="bankForm">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
+    <div class="container">
+        <h1>Sistema de Gerenciamento Bancário</h1>
+        <form id="bankForm">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
 
-        <label for="sobrenome">Sobrenome:</label>
-        <input type="text" id="sobrenome" name="sobrenome" required>
+            <label for="sobrenome">Sobrenome:</label>
+            <input type="text" id="sobrenome" name="sobrenome" required>
 
-        <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" name="cpf" required>
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf" required>
 
-        <label for="saldo">Saldo:</label>
-        <input type="text" id="saldo" name="saldo" readonly>
+            <label for="saldo">Saldo:</label>
+            <input type="text" id="saldo" name="saldo" readonly>
 
-        <label for="valor">Valor:</label>
-        <input type="text" id="valor" name="valor" required>
+            <label for="valor">Valor:</label>
+            <input type="text" id="valor" name="valor" required>
 
-        <button type="button" onclick="consultarSaldo()">Consultar Saldo</button>
-        <button type="button" onclick="realizarDeposito()">Realizar Depósito</button>
-        <button type="button" onclick="realizarSaque()">Realizar Saque</button>
-    </form>
-</div>
+            <button type="button" onclick="consultarSaldo()">Consultar Saldo</button>
+            <button type="button" onclick="realizarDeposito()">Realizar Depósito</button>
+            <button type="button" onclick="realizarSaque()">Realizar Saque</button>
+        </form>
+    </div>
 
-<script>
-    function consultarSaldo() {
-        // Implemente a lógica para consultar o saldo aqui
-    }
+    <script>
+            function consultarSaldo() {
+                // Implemente a lógica para consultar o saldo aqui
+            }
 
-    function realizarDeposito() {
-        // Implemente a lógica para realizar um depósito aqui
-    }
+            function realizarDeposito() {
+                // Implemente a lógica para realizar um depósito aqui
+            }
 
-    function realizarSaque() {
-        // Implemente a lógica para realizar um saque aqui
-    }
-</script>
+            function realizarSaque() {
+                // Implemente a lógica para realizar um saque aqui
+            }
+    </script>
 </body>
+
 </html>
